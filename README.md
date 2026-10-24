@@ -31,8 +31,7 @@ Monster Hunter, Mario Sports Superstars cards and more. The dumps live in this r
 | | |
 |---|---|
 | **Homebrew** (macOS, Linux, [brew-windows](https://github.com/SamuelArther/brew-windows)) | `brew install samuelarther/tap/fetchamiibo` |
-| **Scoop** (Windows) | `scoop bucket add samuelarther https://github.com/SamuelArther/scoop-bucket`<br>`scoop install fetchamiibo` |
-| **winget** (Windows) | `winget install SamuelArther.fetchamiibo` |
+| **Scoop** (Windows) | `scoop bucket add samuelarther https://github.com/SamuelArther/scoop-bucket`<br>`scoop install samuelarther/fetchamiibo` |
 | **pip** (any OS, Python 3.9+) | `pipx install fetchamiibo` or `pip install fetchamiibo` |
 | **Download** | Single-file programs for Windows, macOS and Linux on the [Releases](https://github.com/SamuelArther/fetchamiibo/releases) page |
 

@@ -153,6 +153,17 @@ class IndexTests(unittest.TestCase):
         smash = [e for e in data["amiibo"] if e["name"] == "Isabelle" and e["game"] == "Super Smash Bros."]
         self.assertEqual(len(smash), 1)
 
+    def test_newest_list_wins(self):
+        bundled = json.loads(fa.BUNDLED_INDEX.read_text(encoding="utf-8"))
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(fa, "cache_dir", return_value=Path(tmp)):
+            cached = Path(tmp) / "index.json"
+            cached.write_text(json.dumps(dict(bundled, updated="2000-01-01T00:00:00Z", amiibo=ENTRIES)))
+            self.assertEqual(fa.load_index()["updated"], bundled["updated"])  # stale download
+            cached.write_text(json.dumps(dict(bundled, updated="2999-01-01T00:00:00Z", amiibo=ENTRIES)))
+            self.assertEqual(fa.load_index()["amiibo"], ENTRIES)  # newer download
+            cached.write_text(json.dumps({"source": "x/y", "commit": "abc", "amiibo": ENTRIES}))
+            self.assertEqual(fa.load_index()["updated"], bundled["updated"])  # old 1.0 layout
+
     def test_main_list(self):
         with mock.patch("sys.stdout", new=io.StringIO()) as out:
             self.assertEqual(fa.main(["--list"]), 0)

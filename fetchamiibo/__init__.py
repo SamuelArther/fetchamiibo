@@ -38,15 +38,18 @@ class NotFound(Exception):
 # ---------------------------------------------------------------- index
 
 def load_index():
-    """The index downloaded by --update if there is one, otherwise the copy that shipped with this version."""
-    for path in (cache_dir() / "index.json", BUNDLED_INDEX):
+    """The newer of the list downloaded by --update and the one that shipped with this version."""
+    found = []
+    for path in (BUNDLED_INDEX, cache_dir() / "index.json"):
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
-            if data.get("amiibo"):
-                return data
         except (OSError, ValueError):
             continue
-    sys.exit("fetchamiibo: the amiibo list is missing. Run `fetchamiibo --update` to download it.")
+        if data.get("amiibo") and "ref" in data:  # lists without a ref point at the old upstream layout
+            found.append(data)
+    if not found:
+        sys.exit("fetchamiibo: the amiibo list is missing. Run `fetchamiibo --update` to download it.")
+    return max(found, key=lambda d: d.get("updated", ""))  # ISO times sort as text; ties keep the bundled one
 
 
 def update_index():

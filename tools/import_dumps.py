@@ -6,6 +6,7 @@ the AmiiboAPI database. Dumps already in dumps/ are never changed or removed, so
 Run from anywhere: python tools/import_dumps.py
 """
 import argparse
+import datetime
 import io
 import json
 import re
@@ -173,9 +174,10 @@ def main():
     args = parser.parse_args()
     api = {(a["head"] + a["tail"]).lower(): a for a in json.loads(get(AMIIBO_API))["amiibo"]}
     try:
-        entries = json.loads(INDEX.read_text(encoding="utf-8"))["amiibo"]
+        old = json.loads(INDEX.read_text(encoding="utf-8"))
+        entries = old["amiibo"]
     except (OSError, ValueError, KeyError):
-        entries = []
+        old, entries = {}, []
     entries = [e for e in entries if "from" in e and (ROOT / e["path"]).is_file()]
     have = {(e["id"], e["variant"].lower()) for e in entries}
     owner = {e["id"]: e["from"] for e in entries}  # the first source with an ID owns it and its variants
@@ -207,7 +209,11 @@ def main():
     entries.sort(key=lambda e: (e["game"].lower(), e["name"].lower(), e["path"]))
     keys = ("id", "name", "character", "game", "series", "type", "line", "path", "variant", "from", "from_path",
             "fallback_name", "fallback_game", "fallback_type")
-    data = {"source": REPO, "ref": "main", "amiibo": [{k: e[k] for k in keys} for e in entries]}
+    amiibo = [{k: e[k] for k in keys} for e in entries]
+    # fetchamiibo loads whichever list (bundled or --update) has the newest time, so it only moves on a change.
+    updated = old.get("updated") if old.get("amiibo") == amiibo else None
+    updated = updated or datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    data = {"source": REPO, "ref": "main", "updated": updated, "amiibo": amiibo}
     INDEX.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     missing = sorted({f"{a['amiiboSeries']}: {a['name']}" for i, a in api.items()
                       if not any(e["id"] == i for e in entries)})

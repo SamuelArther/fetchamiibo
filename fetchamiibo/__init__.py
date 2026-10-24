@@ -463,7 +463,7 @@ def fetch(entry, index, out_dir, want_bin=False):
     out_dir.mkdir(parents=True, exist_ok=True)
     stem = file_stem(entry, index["amiibo"])
     saved = [out_dir / f"{stem}.nfc"]
-    saved[0].write_text(text, encoding="utf-8", newline="\n")
+    saved[0].write_bytes(text.encode("utf-8"))  # byte for byte, LF line endings and all
     if want_bin:
         saved.append(out_dir / f"{stem}.bin")
         saved[1].write_bytes(nfc_to_bin(text))

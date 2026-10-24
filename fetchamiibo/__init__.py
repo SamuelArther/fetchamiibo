@@ -7,11 +7,12 @@ import re
 import shutil
 import sys
 import unicodedata
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 REPO = "SamuelArther/fetchamiibo"
 INDEX_URL = f"https://raw.githubusercontent.com/{REPO}/main/fetchamiibo/index.json"
@@ -455,9 +456,23 @@ def find_flipper_sd():
 
 def fetch(entry, index, out_dir, want_bin=False):
     """Download one amiibo's dump into out_dir. Returns the saved paths."""
-    url = (f"https://raw.githubusercontent.com/{index['source']}/{index['commit']}/"
+    url = (f"https://raw.githubusercontent.com/{index['source']}/{index.get('ref', 'main')}/"
            + urllib.parse.quote(entry["path"]))
-    text = download(url).decode("utf-8")
+    try:
+        text = download(url).decode("utf-8")
+    except urllib.error.HTTPError as e:
+        if e.code != 404:
+            raise
+        # The dump moved since this list was made: get the current list and look the amiibo up by ID.
+        fresh = update_index()
+        moved = [x for x in fresh["amiibo"]
+                 if x["id"] == entry["id"] and x.get("variant", "") == entry.get("variant", "")]
+        if not moved:
+            raise
+        entry, index = moved[0], fresh
+        url = (f"https://raw.githubusercontent.com/{index['source']}/{index.get('ref', 'main')}/"
+               + urllib.parse.quote(entry["path"]))
+        text = download(url).decode("utf-8")
     if not text.startswith("Filetype: Flipper NFC device"):
         raise ValueError(f"{url} is not a Flipper NFC file")
     out_dir.mkdir(parents=True, exist_ok=True)

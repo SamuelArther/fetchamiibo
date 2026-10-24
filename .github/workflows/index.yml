@@ -1,6 +1,7 @@
-name: Refresh amiibo list
+name: Import new dumps
 
-# Rebuilds fetchamiibo/index.json every week so `fetchamiibo --update` picks up new dumps and names.
+# Every week: copy in amiibo dumps that the source repositories have added since (see SOURCES in
+# tools/import_dumps.py), refresh names from AmiiboAPI, and commit. `fetchamiibo --update` then sees them.
 on:
   schedule:
     - cron: "17 6 * * 1"
@@ -10,19 +11,20 @@ permissions:
   contents: write
 
 jobs:
-  index:
+  import:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python tools/build_index.py
+      - run: python tools/import_dumps.py
       - run: python -m unittest discover -s tests
-      - name: Commit if it changed
+      - name: Commit if anything changed
         run: |
-          git diff --quiet fetchamiibo/index.json && exit 0
+          git add -A dumps fetchamiibo/index.json
+          git diff --cached --quiet && exit 0
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -am "Refresh amiibo list"
+          git commit -m "Import new amiibo dumps"
           git push

@@ -1,0 +1,158 @@
+Filetype: Flipper NFC device
+Version: 4
+# Device type can be ISO14443-3A, ISO14443-3B, ISO14443-4A, ISO14443-4B, ISO15693-3, FeliCa, NTAG/Ultralight, Mifare Classic, Mifare Plus, Mifare DESFire, SLIX, ST25TB, NTAG4xx, Type 4 Tag, EMV
+Device type: NTAG/Ultralight
+# UID is common for all formats
+UID: 04 6B 4B 32 06 1D 90
+# ISO14443-3A specific data
+ATQA: 00 44
+SAK: 00
+# NTAG/Ultralight specific data
+Data format version: 2
+NTAG/Ultralight type: NTAG215
+Signature: 4B 10 B2 98 BB 12 AF FA E5 61 80 55 45 C0 56 0E 3F E2 D7 9D B1 6C 82 A2 21 5C 56 39 1D E0 57 79
+Mifare version: 00 04 04 02 01 00 11 03
+Counter 0: 0
+Tearing 0: 00
+Counter 1: 0
+Tearing 1: 00
+Counter 2: 6
+Tearing 2: BD
+Pages total: 135
+Pages read: 135
+Page 0: 04 6B 4B AC
+Page 1: 32 06 1D 90
+Page 2: B9 48 0F E0
+Page 3: F1 10 FF EE
+Page 4: A5 00 00 00
+Page 5: 77 42 78 1E
+Page 6: 46 88 B4 CF
+Page 7: 3E CE E3 39
+Page 8: 0D F7 50 51
+Page 9: B6 CA C3 D3
+Page 10: A9 B2 9D C2
+Page 11: EA 2D 44 BC
+Page 12: 7D EB 21 82
+Page 13: E5 D8 11 25
+Page 14: 18 55 02 EF
+Page 15: 52 F1 A1 C1
+Page 16: D3 A2 AA C1
+Page 17: 2A 4A FA 37
+Page 18: 38 4D 8C E6
+Page 19: 91 16 0E 07
+Page 20: 2B B8 CE 8F
+Page 21: 08 07 00 00
+Page 22: 04 F7 04 02
+Page 23: 0D 12 16 1E
+Page 24: 03 94 BC F9
+Page 25: 14 92 E1 49
+Page 26: 60 F3 95 1B
+Page 27: 45 94 4F D1
+Page 28: F2 AF A4 5A
+Page 29: A0 AA 2D FA
+Page 30: AD E7 80 10
+Page 31: 04 95 26 70
+Page 32: C4 7C F0 E6
+Page 33: 04 7A 43 21
+Page 34: DE 3D B5 32
+Page 35: 7B AF 91 9A
+Page 36: 83 D7 9B C5
+Page 37: FA 98 CB A4
+Page 38: 15 EE A6 A6
+Page 39: B2 A4 07 81
+Page 40: 42 4A 4C 92
+Page 41: B0 36 AB FA
+Page 42: 6D 77 7B B7
+Page 43: 61 EA 43 4D
+Page 44: 0A EE B6 FE
+Page 45: 34 4D F2 0B
+Page 46: F8 BC 61 40
+Page 47: FB 56 4C 22
+Page 48: A4 EE 6B 67
+Page 49: 20 8E 40 B1
+Page 50: BE E6 7A 7A
+Page 51: 08 42 58 01
+Page 52: 55 80 17 8D
+Page 53: DE FC 92 56
+Page 54: BD C1 C8 51
+Page 55: B1 EF 37 69
+Page 56: E5 DA 17 67
+Page 57: C5 C3 9D 97
+Page 58: 2A DC AB E4
+Page 59: DF C5 FD 3F
+Page 60: CB E5 82 82
+Page 61: 46 67 26 01
+Page 62: C9 AF 7B 17
+Page 63: 96 FD 1C 38
+Page 64: 00 03 C3 F4
+Page 65: 37 FF FF 11
+Page 66: B4 6F 79 D7
+Page 67: EE B1 26 67
+Page 68: C5 F4 18 99
+Page 69: F8 AD 73 66
+Page 70: 6D 25 9F 95
+Page 71: 8B 00 81 03
+Page 72: BA E8 4C 4C
+Page 73: 26 2B F2 7E
+Page 74: 7D E3 02 60
+Page 75: 9E B6 B3 F6
+Page 76: 21 02 F8 2F
+Page 77: 2F EC 9F B9
+Page 78: 6E A0 13 48
+Page 79: F6 46 53 A8
+Page 80: D0 C8 12 A0
+Page 81: D0 1C 0A 5B
+Page 82: 0B E8 C4 FB
+Page 83: B9 5F 8A B6
+Page 84: 8C 4E B4 A9
+Page 85: 71 9E F9 E5
+Page 86: C2 17 3A 79
+Page 87: 13 42 E5 5F
+Page 88: AA 35 07 66
+Page 89: 90 0E 11 D7
+Page 90: AF 1A 86 78
+Page 91: B4 82 61 D6
+Page 92: 84 46 6C 6C
+Page 93: B4 A4 26 13
+Page 94: 9B FA D5 0F
+Page 95: 31 8B 9B FF
+Page 96: 3C D9 28 CF
+Page 97: 48 C8 CD 11
+Page 98: AE F3 71 51
+Page 99: B0 17 EC 5C
+Page 100: 8D DC 22 50
+Page 101: 41 84 A5 45
+Page 102: 0D D7 DB 81
+Page 103: 08 77 DE C3
+Page 104: 03 72 24 B9
+Page 105: 79 30 64 31
+Page 106: 9E 7F 88 BB
+Page 107: B7 21 97 BC
+Page 108: E9 D9 E8 C2
+Page 109: 37 05 97 2D
+Page 110: 24 B2 A1 2F
+Page 111: DD B2 50 E8
+Page 112: 76 CA 7D F6
+Page 113: 5E EF BC DD
+Page 114: 96 F7 FF D2
+Page 115: 55 D2 43 43
+Page 116: C6 7A C7 4F
+Page 117: 8F 59 69 D8
+Page 118: 51 78 05 59
+Page 119: 8B 69 4B A7
+Page 120: A4 1E 35 F2
+Page 121: DB D5 70 33
+Page 122: 3D 55 5E 4F
+Page 123: 81 AE 27 91
+Page 124: 83 9D 37 F1
+Page 125: 93 3A 6A E1
+Page 126: 20 4E 2E B3
+Page 127: B2 E5 53 8F
+Page 128: 21 BE 7F A6
+Page 129: FC 3B D5 72
+Page 130: 01 00 0F BD
+Page 131: 00 00 00 04
+Page 132: 5F 00 00 00
+Page 133: F3 18 85 C3
+Page 134: 80 80 00 00
+Failed authentication attempts: 0

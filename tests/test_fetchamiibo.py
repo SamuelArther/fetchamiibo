@@ -101,7 +101,7 @@ class FileTests(unittest.TestCase):
             fa.nfc_to_bin(NFC.replace("Page 134:", "Page 999:"))
 
     def test_fetch_writes_nfc_and_bin(self):
-        index = {"source": "x/y", "commit": "abc", "amiibo": ENTRIES}
+        index = {"source": "x/y", "ref": "abc", "amiibo": ENTRIES}
         with tempfile.TemporaryDirectory() as tmp, \
                 mock.patch.object(fa, "download", return_value=NFC.encode()) as dl:
             saved = fa.fetch(ENTRIES[5], index, Path(tmp), want_bin=True)
@@ -110,8 +110,20 @@ class FileTests(unittest.TestCase):
         self.assertEqual(dl.call_args[0][0],
                          "https://raw.githubusercontent.com/x/y/abc/Legend%20Of%20Zelda/Midna%20%26%20Wolf%20Link.nfc")
 
+    def test_fetch_follows_a_moved_dump(self):
+        import urllib.error
+        old = dict(ENTRIES[4], variant="", id="1" * 16)
+        index = {"source": "x/y", "ref": "main", "amiibo": [old]}
+        fresh = {"source": "x/y", "ref": "main", "amiibo": [dict(old, path="dumps/Smash/Toon Link.nfc")]}
+        gone = urllib.error.HTTPError("u", 404, "Not Found", None, None)
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.object(fa, "download", side_effect=[gone, NFC.encode()]) as dl, \
+                mock.patch.object(fa, "update_index", return_value=fresh):
+            fa.fetch(old, index, Path(tmp))
+        self.assertTrue(dl.call_args[0][0].endswith("/main/dumps/Smash/Toon%20Link.nfc"))
+
     def test_fetch_rejects_non_nfc(self):
-        index = {"source": "x/y", "commit": "abc", "amiibo": ENTRIES}
+        index = {"source": "x/y", "ref": "abc", "amiibo": ENTRIES}
         with tempfile.TemporaryDirectory() as tmp, mock.patch.object(fa, "download", return_value=b"<html>"):
             with self.assertRaises(ValueError):
                 fa.fetch(ENTRIES[0], index, Path(tmp))
@@ -131,10 +143,13 @@ class FileTests(unittest.TestCase):
 class IndexTests(unittest.TestCase):
     def test_bundled_index(self):
         data = json.loads(fa.BUNDLED_INDEX.read_text(encoding="utf-8"))
-        self.assertRegex(data["commit"], r"^[0-9a-f]{40}$")
-        self.assertGreater(len(data["amiibo"]), 800)
+        self.assertEqual((data["source"], data["ref"]), ("SamuelArther/fetchamiibo", "main"))
+        self.assertGreater(len(data["amiibo"]), 900)
+        root = fa.BUNDLED_INDEX.parent.parent
         for e in data["amiibo"]:
-            self.assertTrue(e["name"] and e["game"] and e["path"].endswith(".nfc"), e)
+            self.assertTrue(e["name"] and e["game"] and e["from"], e)
+            self.assertTrue((root / e["path"]).is_file(), e["path"])  # every dump is in the repository
+        self.assertEqual(len({e["path"].lower() for e in data["amiibo"]}), len(data["amiibo"]))
         smash = [e for e in data["amiibo"] if e["name"] == "Isabelle" and e["game"] == "Super Smash Bros."]
         self.assertEqual(len(smash), 1)
 

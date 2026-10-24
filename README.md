@@ -21,8 +21,10 @@ Which one?
   it, a number to jump to that row, Backspace or Left to go back, and Esc to quit.
 - Typos are fine: `fetchamiibo toon-link`, `fetchamiibo pokemon trainer`, `fetchamiibo isabele`.
 
-935 amiibo across 25 games: Smash, Animal Crossing cards and figures, Zelda, Mario, Splatoon, Metroid,
-Fire Emblem, Kirby, Monster Hunter, Mario Sports Superstars cards and more.
+956 amiibo across 28 games: Smash (Sora included), Animal Crossing cards and figures, Zelda up to Tears of the
+Kingdom, Mario, Splatoon up to Side Order and Raiders, Metroid Prime 4, Xenoblade 3, Fire Emblem, Kirby,
+Monster Hunter, Mario Sports Superstars cards and more. The dumps live in this repository under
+[`dumps/`](dumps), so nothing depends on anyone else's repository staying up.
 
 ## Install
 
@@ -61,14 +63,27 @@ Files are named after the amiibo, plus the game when the name alone is ambiguous
 Then on the Flipper: **NFC > Saved > the amiibo > Emulate**, and hold it to the Switch / 3DS / Wii U reader.
 To make a physical copy, use **Write** with a blank NTAG215 tag, or use the `.bin` with Tagmo on Android.
 
-## Where the data comes from
+## Where the dumps come from
 
-- The dumps are from [Gioman101/FlipperAmiibo](https://github.com/Gioman101/FlipperAmiibo). fetchamiibo downloads
-  each file from that repository when you ask for it and doesn't store any dumps itself.
-- Names, games and card series come from [AmiiboAPI](https://www.amiiboapi.org/), matched to the dumps by the amiibo
-  ID inside each file.
-- `fetchamiibo/index.json` is the joined list. A weekly GitHub Action rebuilds it
-  (`python tools/build_index.py`), and `fetchamiibo --update` fetches the latest copy.
+Collected from [Gioman101/FlipperAmiibo](https://github.com/Gioman101/FlipperAmiibo) (the bulk of them),
+[AmiiboDB/Amiibo](https://github.com/AmiiboDB/Amiibo) and [Re3koning/AmiiboFiles](https://github.com/Re3koning/AmiiboFiles),
+named with [AmiiboAPI](https://www.amiiboapi.org/). Full credits are in [dumps/CREDITS.md](dumps/CREDITS.md).
+
+- A weekly GitHub Action (`python tools/import_dumps.py`) copies in anything new those repositories add and
+  rebuilds `fetchamiibo/index.json`. `fetchamiibo --update` fetches the latest list.
+- [dumps/WANTED.md](dumps/WANTED.md) lists the amiibo nobody has dumped yet: the newest Street Fighter 6 cards,
+  Kirby Air Riders, Mario Galaxy and more.
+
+### Adding amiibo you own
+
+Read the real amiibo with a Flipper Zero (**NFC > Read**, hold the amiibo to the back, **Save**). Then either open
+an issue or pull request with the `.nfc` file, or add it yourself:
+
+```
+python tools/import_dumps.py --local path/to/your/dumps --credit "your name"
+```
+
+`.nfc` and raw `.bin` dumps both work, and amiibo that are already in the collection are skipped.
 
 ## Development
 

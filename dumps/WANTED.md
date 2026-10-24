@@ -1,0 +1,63 @@
+# Wanted
+
+amiibo that AmiiboAPI lists but no source has a dump of yet. If you own one, read it with a Flipper
+(NFC > Read, then Save) and open a pull request or an issue with the .nfc file.
+
+- Kirby Air Riders: Bandana Waddle Dee (& Winged Star)
+- Kirby Air Riders: Chef Kawasaki (& Hop Star)
+- Kirby Air Riders: King Dedede (& Tank Star)
+- Kirby Air Riders: Kirby (& Warp Star)
+- Kirby Air Riders: Meta Knight (& Shadow Star)
+- Legend Of Zelda: Mineru's Construct
+- Legend Of Zelda: Sidon
+- Legend Of Zelda: Yunobo
+- Metroid: Sylux
+- Monster Hunter: Ratha
+- Monster Hunter: Ratha V
+- Monster Hunter: Rudy
+- My Mario Wooden Blocks: Luigi - My Mario Wooden Blocks
+- My Mario Wooden Blocks: Mario (Melody Car) - My Mario Wooden Blocks
+- My Mario Wooden Blocks: Mario - My Mario Wooden Blocks
+- My Mario Wooden Blocks: Peach - My Mario Wooden Blocks
+- My Mario Wooden Blocks: Toad - My Mario Wooden Blocks
+- My Mario Wooden Blocks: Yoshi - My Mario Wooden Blocks
+- Pragmata: Diana
+- Resident Evil: Grace Ashcroft
+- Resident Evil: Leon S. Kennedy
+- Street Fighter 6: A.K.I
+- Street Fighter 6: Akuma
+- Street Fighter 6: Alex
+- Street Fighter 6: Blanka
+- Street Fighter 6: C. Viper
+- Street Fighter 6: Cammy
+- Street Fighter 6: Chun-Li
+- Street Fighter 6: Dee Jay
+- Street Fighter 6: Dhalsim
+- Street Fighter 6: E. Honda
+- Street Fighter 6: Ed
+- Street Fighter 6: Elena
+- Street Fighter 6: Guile
+- Street Fighter 6: Ingrid
+- Street Fighter 6: JP
+- Street Fighter 6: Jamie
+- Street Fighter 6: Juri
+- Street Fighter 6: Ken
+- Street Fighter 6: Kimberly
+- Street Fighter 6: Lily
+- Street Fighter 6: Luke
+- Street Fighter 6: M. Bison
+- Street Fighter 6: Mai
+- Street Fighter 6: Manon
+- Street Fighter 6: Marisa
+- Street Fighter 6: Rashid
+- Street Fighter 6: Ryu
+- Street Fighter 6: Sagat
+- Street Fighter 6: Terry
+- Street Fighter 6: Zangief
+- Super Mario Bros.: Captain Toad & Talking Flower
+- Super Mario Bros.: Elephant Mario
+- Super Mario Bros.: Mario and Luma
+- Super Mario Bros.: Poplin & Prince Florian
+- Super Mario Bros.: Rosalina and Lumas
+- Super Nintendo World: Diddy Kong - Power Up Band
+- Super Nintendo World: Donkey Kong - Power Up Band

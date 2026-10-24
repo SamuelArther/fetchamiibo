@@ -21,7 +21,7 @@ Which one?
   it, a number to jump to that row, Backspace or Left to go back, and Esc to quit.
 - Typos are fine: `fetchamiibo toon-link`, `fetchamiibo pokemon trainer`, `fetchamiibo isabele`.
 
-956 amiibo across 28 games: Smash (Sora included), Animal Crossing cards and figures, Zelda up to Tears of the
+954 amiibo across 27 games: Smash (Sora included), Animal Crossing cards and figures, Zelda up to Tears of the
 Kingdom, Mario, Splatoon up to Side Order and Raiders, Metroid Prime 4, Xenoblade 3, Fire Emblem, Kirby,
 Monster Hunter, Mario Sports Superstars cards and more. The dumps live in this repository under
 [`dumps/`](dumps), so nothing depends on anyone else's repository staying up.

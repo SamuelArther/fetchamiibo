@@ -118,7 +118,7 @@ def candidates(repo, found, api):
     for amiibo_id, copies in found.items():
         copies.sort(key=lambda c: path_rank(c[0]))
         known = amiibo_id in api
-        if not known and len(copies) == 1:
+        if not known and len({pretty_stem(Path(c[0]).stem).lower() for c in copies}) < 2:
             continue  # an ID AmiiboAPI doesn't know, e.g. a guessed pre-release ID that won't scan
         base = Path(copies[0][0]).stem
         seen_stems = set()

@@ -35,38 +35,6 @@
    "fallback_type": "Figure"
   },
   {
-   "id": "01000000041a0902",
-   "name": "Gerudo King",
-   "character": "Gerudo King",
-   "game": "Amiibo Bin",
-   "series": "",
-   "type": "Figure",
-   "line": "Tears of the Kingdom",
-   "path": "dumps/Amiibo Bin/Gerudo King.nfc",
-   "variant": "Gerudo King",
-   "from": "AmiiboDB/Amiibo",
-   "from_path": "Amiibo Bin/The Legend of Zelda Amiibo/Tears of the Kingdom/Gerudo_King.bin",
-   "fallback_name": "Gerudo King",
-   "fallback_game": "Amiibo Bin",
-   "fallback_type": "Figure"
-  },
-  {
-   "id": "0100000004190902",
-   "name": "Princess Zelda",
-   "character": "Princess Zelda",
-   "game": "Amiibo Bin",
-   "series": "",
-   "type": "Figure",
-   "line": "Tears of the Kingdom",
-   "path": "dumps/Amiibo Bin/Princess Zelda.nfc",
-   "variant": "Princess Zelda",
-   "from": "AmiiboDB/Amiibo",
-   "from_path": "Amiibo Bin/The Legend of Zelda Amiibo/Tears of the Kingdom/Princess_Zelda.bin",
-   "fallback_name": "Princess Zelda",
-   "fallback_game": "Amiibo Bin",
-   "fallback_type": "Figure"
-  },
-  {
    "id": "0a1b000103d20502",
    "name": "Ace",
    "character": "Ace",

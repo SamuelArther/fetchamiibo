@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fetchamiibo"
+dynamic = ["version"]
+description = "Download amiibo NFC dumps for a Flipper Zero from the command line. Pick by name, or browse by game and letter."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Samuel Arther" }]
+requires-python = ">=3.9"
+keywords = ["amiibo", "flipper zero", "flipper", "nfc", "ntag215", "tagmo", "nintendo", "cli"]
+classifiers = [
+    "Environment :: Console",
+    "Programming Language :: Python :: 3",
+    "Topic :: Games/Entertainment",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/SamuelArther/fetchamiibo"
+
+[project.scripts]
+fetchamiibo = "fetchamiibo:main"
+
+[tool.setuptools]
+packages = ["fetchamiibo"]
+
+[tool.setuptools.package-data]
+fetchamiibo = ["index.json"]
+
+[tool.setuptools.dynamic]
+version = { attr = "fetchamiibo.__version__" }
